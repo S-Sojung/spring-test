@@ -76,6 +76,7 @@ public class UserController {
     @PostMapping("/userInfo")
     public String userInfo(Model model, String password) {
         User principal = (User) session.getAttribute("principal");
+        model.addAttribute("page", "회원 정보 수정");
 
         int result = userRepository.updateById(principal.getId(), password);
         if (result != 1) {
