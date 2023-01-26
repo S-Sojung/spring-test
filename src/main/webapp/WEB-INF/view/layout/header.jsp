@@ -11,12 +11,15 @@
             <style>
                 .box {
                     display: grid;
+                    justify-content: center;
                 }
 
                 .page__box {
-                    background-color: rgb(214, 199, 199);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     height: 100px;
-                    text-align: center;
+                    background-color: rgb(214, 199, 199);
                 }
 
                 .nav ul {
@@ -26,25 +29,12 @@
                     grid-gap: 30px;
                     list-style-type: none;
                 }
-
-                .foot__box {
-                    height: 100px;
-                    background-color: rgb(214, 199, 199);
-                    text-align: center;
-                }
-
-                .table__box {
-                    display: grid;
-                    justify-content: center;
-                }
             </style>
         </head>
 
         <body>
-            <div class="box">
-                <div class="page__box">
-                    <h1>${page} 페이지</h1>
-                </div>
+            <div class="page__box">
+                <h1>${page} 페이지</h1>
             </div>
             <hr />
             <div class="nav">

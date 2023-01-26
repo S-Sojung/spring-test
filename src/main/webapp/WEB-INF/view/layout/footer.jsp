@@ -3,8 +3,7 @@
     <br />
         </div>
     <hr />
-    <div class = "foot__box">
-    <br>
+    <div class = "page__box">
         Created By 소정 <br><br>
         부산진구 중앙대로 708
     </div>
