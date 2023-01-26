@@ -65,12 +65,12 @@ public class UserController {
         if (principal == null) {
             return "redirect:/loginForm";
         }
-        User user = (User) session.getAttribute("principal");
-        if (user.getId() != principal.getId()) {
+
+        if (id != principal.getId()) {
             return "redirect:/loginForm";
         }
 
-        model.addAttribute("user", user);
+        model.addAttribute("user", principal);
         return "user/userInfoForm";
     }
 
