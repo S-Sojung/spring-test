@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -19,14 +20,14 @@ public class UserController {
     HttpSession session;
 
     @GetMapping({ "/", "/loginForm" })
-    public String loginForm() {
-
+    public String loginForm(Model model) {
+        model.addAttribute("page", "로그인");
         return "user/loginForm";
     }
 
     @GetMapping("/joinForm")
-    public String joinFonm() {
-
+    public String joinFonm(Model model) {
+        model.addAttribute("page", "회원가입");
         return "user/joinForm";
     }
 
@@ -47,5 +48,11 @@ public class UserController {
         }
         session.setAttribute("principal", user);
         return "redirect:/board";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        session.invalidate();
+        return "redirect:/loginForm";
     }
 }
