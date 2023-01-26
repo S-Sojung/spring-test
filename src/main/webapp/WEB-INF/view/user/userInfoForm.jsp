@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file ="../layout/header.jsp"%>
-        <form action="/userInfo" method="post">
+        <form action="/userInfo/update" method="post">
             <div class="table__box">
                 <table border="1">
                     <tr>

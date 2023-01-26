@@ -74,7 +74,7 @@ public class UserController {
         return "user/userInfoForm";
     }
 
-    @PostMapping("/userInfo")
+    @PostMapping("/userInfo/update")
     public String userInfo(Model model, String password) {
         User principal = (User) session.getAttribute("principal");
 
