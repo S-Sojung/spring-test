@@ -12,4 +12,8 @@ public class BoardController {
     @Autowired
     BoradRepository boradRepository;
 
+    @GetMapping("/board")
+    public String board() {
+        return "board/list";
+    }
 }
