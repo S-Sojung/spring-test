@@ -19,7 +19,7 @@ public class UserController {
     @Autowired
     HttpSession session;
 
-    @GetMapping({ "/", "/loginForm" })
+    @GetMapping("/loginForm")
     public String loginForm(Model model) {
         model.addAttribute("page", "로그인");
         return "user/loginForm";
@@ -47,7 +47,7 @@ public class UserController {
             return "redirect:/loginForm";
         }
         session.setAttribute("principal", user);
-        return "redirect:/board";
+        return "redirect:/board/list";
     }
 
     @GetMapping("/logout")

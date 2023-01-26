@@ -6,10 +6,12 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
-public interface BoradRepository { // CRUD
+public interface BoardRepository { // CRUD
     public int insert(@Param("title") String title, @Param("userId") int userId);
 
     public List<Board> findAll();
+
+    public List<Board> findByUserId(int userId);
 
     public Board findById(int id);
 
