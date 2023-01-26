@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import shop.mtcoding.test.model.User;
@@ -54,5 +55,32 @@ public class UserController {
     public String logout() {
         session.invalidate();
         return "redirect:/loginForm";
+    }
+
+    @GetMapping("/userInfoForm/{id}")
+    public String userInfoForm(Model model, @PathVariable int id) {
+        User principal = (User) session.getAttribute("principal");
+
+        if (principal == null) {
+            return "redirect:/loginForm";
+        }
+        User user = (User) session.getAttribute("principal");
+        if (user.getId() != principal.getId()) {
+            return "redirect:/loginForm";
+        }
+
+        model.addAttribute("user", user);
+        return "user/userInfoForm";
+    }
+
+    @PostMapping("/userInfo")
+    public String userInfo(Model model, String password) {
+        User principal = (User) session.getAttribute("principal");
+
+        int result = userRepository.updateById(principal.getId(), password);
+        if (result != 1) {
+            return "redirect:/notFound";
+        }
+        return "redirect:/board/list";
     }
 }
