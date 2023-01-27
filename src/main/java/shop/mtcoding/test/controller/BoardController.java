@@ -30,6 +30,8 @@ public class BoardController {
         model.addAttribute("page", "유저 게시글 목록");
         List<Board> boardList = boardRepository.findByUserId(principal.getId());
         model.addAttribute("boardList", boardList);
+        // 여기서 자바 스크립트를 써서 하면 안됨. 리다이렉션이라 리퀘스트 두번 만들어져서
+        // 데이터가 넘어갈 수 없다.
         return "board/list";
     }
 

@@ -1,0 +1,25 @@
+.align_center {
+    display: flex;
+    justify-items: center;
+}
+
+.box {
+    display: grid;
+    justify-content: center;
+}
+
+.page__box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background-color: rgb(214, 199, 199);
+}
+
+.nav ul {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    grid-gap: 30px;
+    list-style-type: none;
+}

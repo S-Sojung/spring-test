@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.test.model.User;
 import shop.mtcoding.test.model.UserRepository;
+import shop.mtcoding.test.util.Script;
 
 @Controller
 public class UserController {
@@ -32,13 +34,20 @@ public class UserController {
         return "user/joinForm";
     }
 
+    @ResponseBody
     @PostMapping("/join")
     public String join(String username, String password, String email) {
-        int result = userRepository.insert(username, password, email);
-        if (result != 1) {
-            return "redirect:/notFound";
+        try {
+            int result = userRepository.insert(username, password, email);
+            if (result != 1) {
+                return Script.back("회원가입 실패");
+            }
+        } catch (Exception e) {
+            return Script.back("회원가입 실패");
+            // TODO: handle exception
         }
-        return "redirect:/loginForm";
+
+        return Script.href("/loginForm");
     }
 
     @PostMapping("/login")
@@ -57,10 +66,22 @@ public class UserController {
         return "redirect:/loginForm";
     }
 
-    @GetMapping("/userInfoForm/{id}")
-    public String userInfoForm(Model model, @PathVariable int id) {
+    @GetMapping("/userInfoForm")
+    public String userInfoForm(Model model) {
         User principal = (User) session.getAttribute("principal");
         model.addAttribute("page", "회원 정보 수정");
+
+        model.addAttribute("user", principal);
+        return "user/userInfoForm";
+    }
+
+    @PostMapping("/userInfo/{id}/update")
+    public String userInfo(@PathVariable int id, Model model, String password) {
+        // 유효성 검사를 해야한다.
+        // 인증검사
+        // 권한검사
+
+        User principal = (User) session.getAttribute("principal");
 
         if (principal == null) {
             return "redirect:/loginForm";
@@ -70,18 +91,14 @@ public class UserController {
             return "redirect:/loginForm";
         }
 
-        model.addAttribute("user", principal);
-        return "user/userInfoForm";
-    }
-
-    @PostMapping("/userInfo/update")
-    public String userInfo(Model model, String password) {
-        User principal = (User) session.getAttribute("principal");
-
         int result = userRepository.updateById(principal.getId(), password);
         if (result != 1) {
             return "redirect:/notFound";
         }
+
+        // 세션 동기화
+        User user = userRepository.findById(principal.getId());
+        session.setAttribute("principal", user);
         return "redirect:/board/list";
     }
 }

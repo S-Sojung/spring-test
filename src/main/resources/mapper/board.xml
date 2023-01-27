@@ -14,11 +14,11 @@
     </select>   
 
     <select id="findByUserId" resultType="shop.mtcoding.test.model.Board">
-        select * from board_tb where userId = #{userId} order by id desc
+        select * from board_tb where user_id = #{userId} order by id desc
     </select>   
 
     <insert id="insert" >
-        insert into board_tb(title, userId, createdAt) values(#{title}, #{userId}, now())
+        insert into board_tb(title, user_id, created_at) values(#{title}, #{userId}, now())
     </insert>    
 
     <delete id="deleteById" >

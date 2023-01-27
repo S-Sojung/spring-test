@@ -8,28 +8,8 @@
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>게시판 서버</title>
-            <style>
-                .box {
-                    display: grid;
-                    justify-content: center;
-                }
+            <link rel="stylesheet" href="/css/style.css">
 
-                .page__box {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    height: 100px;
-                    background-color: rgb(214, 199, 199);
-                }
-
-                .nav ul {
-                    display: grid;
-                    grid-template-columns: auto auto;
-                    justify-content: center;
-                    grid-gap: 30px;
-                    list-style-type: none;
-                }
-            </style>
         </head>
 
         <body>
@@ -46,7 +26,8 @@
                         </c:when>
 
                         <c:otherwise>
-                            <li><a href="/userInfoForm/${principal.id}">회원정보</a></li>
+                            <li><a href="/userInfoForm">회원정보</a></li>
+                            <li><a href="/board/list">게시글 목록 보기 </a></li>
                             <li><a href="/logout">로그아웃</a></li>
                         </c:otherwise>
                     </c:choose>

@@ -3,12 +3,12 @@ create table user_tb(
     username varchar not null unique,
     password varchar not null, 
     email varchar not null,
-    createdAt timestamp
+    created_at timestamp
 );
 
 create table board_tb(
     id int auto_increment primary key,
     title varchar not null unique,
-    userId int not null, 
-    createdAt timestamp
+    user_id int not null, 
+    created_at timestamp
 );

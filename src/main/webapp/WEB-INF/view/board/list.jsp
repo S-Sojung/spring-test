@@ -14,5 +14,6 @@
             </tr>
             </c:forEach>
         </table>
+
         <a href="#">글쓰기</a>
         <%@ include file="../layout/footer.jsp" %>
